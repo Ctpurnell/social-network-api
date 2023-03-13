@@ -1,20 +1,11 @@
-const express = require('express');
-const mongodb = require('mongodb').MongoClient;
+const { connect, connection } = require('mongoose');
 
-const app = express();
-const port = 3001;
+const connectionString =
+  process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/socialDB';
 
-const connectionStringURI = `mongodb://127.0.0.1:27017/socialDB`;
+connect(connectionString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-let db;
-
-mongodb.connect(
-  connectionStringURI,
-  { useNewUrlParser: true,useUnifiedTopology: true },
-  (err, client) => {
-    db = client.db();
-    app.listen(port, () => {
-      console.log(`Example app listening at http://localhost:${port}`);
-    });
-  }
-);
+module.exports = connection;
