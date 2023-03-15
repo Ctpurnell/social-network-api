@@ -20,8 +20,9 @@ https://app.castify.com/view/be5046b5-7870-4f44-86ce-b4fcbbb7bf59
 
 * The following shows the apps routes being tested in Insomnia
 
+https://app.castify.com/view/3d7369e3-f2ac-44b5-a4c1-c8913dd7d17a
 
-https://app.castify.com/view/e2a5deb0-cd32-48b1-b8bf-f68a0e9429b3
+
 
 
 ## Credits
