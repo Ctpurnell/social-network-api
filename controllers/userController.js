@@ -9,30 +9,25 @@ const allUsers = async () =>
     module.exports = {
         getUsers(req, res) {
           User.find()
-            .populate('thoughts')
-            .then(async (users) => {
-              const userObj = {
-                users,
-              };
-              return res.json(userObj);
-            })
+            .then(async (users) => res.json(users))
             .catch((err) => {
               console.log(err);
-              return res.status(500).json(err);
-            });
-        },
-      
+              return res.status(500).json(err)
+        });
+      },
+          
+              
 
         getSingleUser(req, res) {
           User.findOne({ _id: req.params.userId })
             .select('-__v')
-            .then(async (user) =>
-              !user
+            .then(async (users) =>
+              !users
                 ? res
                     .status(404)
                     .json({ message: 'User not found'})
                 : res.json({
-                    user,
+                    users,
                     allUsers: await allUsers(),
                   })
             )

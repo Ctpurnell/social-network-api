@@ -13,12 +13,12 @@ module.exports = {
 
   createThought(req, res) {
     Thought.create(req.body)
-      .then((thought) =>
-        !thought
+      .then((thoughts) =>
+        !thoughts
           ? res.status(404).json({ message: 'Error: no thought!' })
           : User.findOneAndUpdate(
               { userId: req.body.userId },
-              { $push: { thought: { thought: thought.thoughtText } } },
+              { $push: { thought: { thought: thoughts.thoughtText } } },
               { runValidators: true, new: true }
             )
       )
@@ -54,8 +54,8 @@ module.exports = {
       { thoughtText: req.body.thoughtText, username: req.body.username },
       { runValidators: true, new: true }
     )
-      .then((thought) =>
-        !thought
+      .then((thoughts) =>
+        !thoughts
           ? res
               .status(404)
               .json({ message: 'Thought not found' })
